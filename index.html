@@ -118,6 +118,9 @@
     form.email input{flex:1;min-width:220px;padding:14px 16px;border:1.5px solid var(--line);
       border-radius:12px;font-size:16px;font-family:inherit}
     form.email input:focus{outline:none;border-color:var(--green)}
+    .form-msg{margin-top:18px;font-size:16px;min-height:1.2em}
+    .form-msg.ok{color:var(--green-deep);font-weight:600}
+    .form-msg.err{color:#b3543f}
 
     /* ---- Footer ---- */
     footer{padding:40px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
@@ -260,14 +263,15 @@
       <h2>Be the first to know when Tend launches</h2>
       <p>One email when it's live on the App Store. No spam, no list-selling — that wouldn't be very Tend.</p>
       <!--
-        This form posts to a free form service. Replace the action URL with your own:
-        easiest options are Formspree (formspree.io) or Buttondown (buttondown.email).
-        Until you set that up, it just won't submit — swap YOUR_FORM_ID below.
+        Email capture via Formspree, submitted with fetch() so the visitor stays on the
+        page and sees an inline "thanks" instead of being redirected. The form still has a
+        real action+method, so it also works if JavaScript is off.
       -->
-      <form class="email" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form class="email" id="notify-form" action="https://formspree.io/f/xrewpgwq" method="POST">
         <input type="email" name="email" placeholder="you@example.com" required />
         <button class="btn" type="submit">Notify me</button>
       </form>
+      <p class="form-msg" id="form-status" role="status" aria-live="polite"></p>
     </div>
   </section>
 
@@ -282,6 +286,37 @@
       </div>
     </div>
   </footer>
+
+  <!--
+    Send the email to Formspree without leaving the page.
+    Asking for JSON back (Accept header) makes Formspree reply with data instead of a redirect.
+  -->
+  <script>
+    var notifyForm = document.getElementById('notify-form');
+    var statusEl = document.getElementById('form-status');
+    notifyForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var data = new FormData(notifyForm);
+      fetch(notifyForm.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          notifyForm.style.display = 'none';
+          statusEl.textContent = "Thanks — I'll email you the moment Tend is live.";
+          statusEl.className = 'form-msg ok';
+          notifyForm.reset();
+        } else {
+          statusEl.textContent = "Hmm, that didn't go through. Mind trying again?";
+          statusEl.className = 'form-msg err';
+        }
+      }).catch(function () {
+        statusEl.textContent = "Network hiccup — please try again in a moment.";
+        statusEl.className = 'form-msg err';
+      });
+    });
+  </script>
 
 </body>
 </html>
