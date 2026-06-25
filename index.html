@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  Tend — landing page (single file, no build step).
+  Tend landing page (single file, no build step).
   Hand-written HTML + CSS so you can read and tweak it while learning.
   Structure:  <head> = meta/SEO + all styles  ·  <body> = the page sections.
   To change a colour, edit the :root variables near the top of <style>.
@@ -12,11 +12,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- SEO basics: the title + description are what Google and link previews show -->
-  <title>Tend — The ADHD app you'll actually keep using</title>
-  <meta name="description" content="Tend is a calm, one-tap routine tracker for adults with ADHD. No streaks, no shame, no homework. Free to download, pay once for Plus — no subscription." />
+  <title>Tend: The ADHD app you'll actually keep using</title>
+  <meta name="description" content="Tend is a calm, one-tap routine tracker for adults with ADHD. No streaks, no shame, no homework. Free to download, pay once for Plus, no subscription." />
 
   <!-- Social share preview (when the link is pasted into iMessage, Reddit, etc.) -->
-  <meta property="og:title" content="Tend — The ADHD app you'll actually keep using" />
+  <meta property="og:title" content="Tend: The ADHD app you'll actually keep using" />
   <meta property="og:description" content="Calm, one-tap routine tracking for adult ADHD brains. No streaks, no shame." />
   <meta property="og:image" content="assets/icon.png" />
   <meta property="og:type" content="website" />
@@ -26,8 +26,8 @@
   <style>
     /* ---- Colour + type tokens (pulled straight from the app's Theme.swift) ---- */
     :root{
-      --green:#5CA887;        /* calm green — tints, accents */
-      --green-deep:#388569;   /* button green — white text passes WCAG AA */
+      --green:#5CA887;        /* calm green (tints, accents) */
+      --green-deep:#388569;   /* button green (white text passes WCAG AA) */
       --green-soft:#EAF3EE;   /* faint green wash for section backgrounds */
       --orange:#EBAB66;       /* warm accent, used sparingly */
       --ink:#1f2421;          /* near-black text, slightly warm */
@@ -187,7 +187,7 @@
         <div class="card">
           <div class="dot">👆</div>
           <h3>One tap</h3>
-          <p>The home screen <em>is</em> the check-in. Zero setup — three routines ready the moment you open it.</p>
+          <p>The home screen <em>is</em> the check-in. Zero setup, three routines ready the moment you open it.</p>
         </div>
         <div class="card">
           <div class="dot">🕒</div>
@@ -217,11 +217,11 @@
         </div>
         <div class="shot">
           <img src="assets/screen-timeline.png" alt="Day timeline with a now line" />
-          <p>See your whole day — and where you are in it.</p>
+          <p>See your whole day, and where you are in it.</p>
         </div>
         <div class="shot">
           <img src="assets/screen-progress.png" alt="Progress view without streaks" />
-          <p>Progress without streaks or guilt — just how you're really doing.</p>
+          <p>Progress without streaks or guilt. Just how you're really doing.</p>
         </div>
       </div>
     </div>
@@ -232,7 +232,7 @@
     <div class="wrap">
       <div class="section-head">
         <h2>Most ADHD apps were built to nag you</h2>
-        <p>Tend wasn't. It treats you like an adult who needs a hand — not a child who needs a gold star.</p>
+        <p>Tend wasn't. It treats you like an adult who needs a hand, not a child who needs a gold star.</p>
       </div>
       <div class="why-grid">
         <div class="why-col them">
@@ -249,7 +249,7 @@
           <ul>
             <li>A tool you open for five seconds</li>
             <li>Free core, pay once for Plus</li>
-            <li>On-device and private — no account</li>
+            <li>On-device and private, no account</li>
             <li>Calm and forgiving, never childish</li>
           </ul>
         </div>
@@ -261,9 +261,9 @@
   <section class="signup" id="get">
     <div class="wrap">
       <h2>Be the first to know when Tend launches</h2>
-      <p>Send me a quick email and I'll reply the moment Tend is on the App Store. No spam, no list — just one reply from me.</p>
+      <p>Send me a quick email and I'll reply the moment Tend is on the App Store. No spam, no list, just one reply from me.</p>
       <!--
-        Email signup is a plain mailto: link — no third-party service, nothing to break.
+        Email signup is a plain mailto: link, no third-party service, nothing to break.
         Tapping it opens the visitor's email app with the subject pre-filled.
       -->
       <a class="btn" href="mailto:rylumcgee@gmail.com?subject=Notify%20me%20when%20Tend%20launches&body=Hi%20Ryan%20%E2%80%94%20please%20let%20me%20know%20when%20Tend%20is%20live.%20Thanks!">Email me to get notified</a>
