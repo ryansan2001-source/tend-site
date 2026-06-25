@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!--
+  Tend — landing page (single file, no build step).
+  Hand-written HTML + CSS so you can read and tweak it while learning.
+  Structure:  <head> = meta/SEO + all styles  ·  <body> = the page sections.
+  To change a colour, edit the :root variables near the top of <style>.
+  Drop this whole `site/` folder into a GitHub Pages repo and it just works.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO basics: the title + description are what Google and link previews show -->
+  <title>Tend — The ADHD app you'll actually keep using</title>
+  <meta name="description" content="Tend is a calm, one-tap routine tracker for adults with ADHD. No streaks, no shame, no homework. Free to download, pay once for Plus — no subscription." />
+
+  <!-- Social share preview (when the link is pasted into iMessage, Reddit, etc.) -->
+  <meta property="og:title" content="Tend — The ADHD app you'll actually keep using" />
+  <meta property="og:description" content="Calm, one-tap routine tracking for adult ADHD brains. No streaks, no shame." />
+  <meta property="og:image" content="assets/icon.png" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="assets/icon.png" />
+
+  <style>
+    /* ---- Colour + type tokens (pulled straight from the app's Theme.swift) ---- */
+    :root{
+      --green:#5CA887;        /* calm green — tints, accents */
+      --green-deep:#388569;   /* button green — white text passes WCAG AA */
+      --green-soft:#EAF3EE;   /* faint green wash for section backgrounds */
+      --orange:#EBAB66;       /* warm accent, used sparingly */
+      --ink:#1f2421;          /* near-black text, slightly warm */
+      --muted:#5d6b63;        /* secondary text */
+      --line:#e3e8e5;         /* hairline borders */
+      --bg:#ffffff;
+      --radius:18px;
+      --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:var(--font);
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit}
+    .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+    /* ---- Top nav ---- */
+    nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:19px}
+    .brand img{width:34px;height:34px;border-radius:9px}
+    .nav-links a{margin-left:22px;text-decoration:none;color:var(--muted);font-size:15px}
+    .nav-links a:hover{color:var(--ink)}
+
+    /* ---- Hero ---- */
+    .hero{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;padding:56px 0 64px}
+    .hero h1{font-size:46px;line-height:1.1;letter-spacing:-0.02em;font-weight:700;margin-bottom:18px}
+    .hero p.sub{font-size:20px;color:var(--muted);margin-bottom:28px;max-width:30ch}
+    .hero-phone{display:flex;justify-content:center}
+    .hero-phone img{
+      width:100%;max-width:300px;border-radius:34px;
+      box-shadow:0 24px 60px rgba(56,133,105,0.18);
+      border:1px solid var(--line);
+    }
+
+    /* ---- Buttons ---- */
+    .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+    .btn{
+      display:inline-block;background:var(--green-deep);color:#fff;
+      text-decoration:none;font-weight:600;font-size:16px;
+      padding:14px 26px;border-radius:14px;transition:transform .08s ease,background .2s;
+    }
+    .btn:hover{background:#2f6f57;transform:translateY(-1px)}
+    .btn.secondary{background:transparent;color:var(--green-deep);border:1.5px solid var(--green)}
+    .btn.secondary:hover{background:var(--green-soft)}
+    .pricing-note{font-size:14px;color:var(--muted);margin-top:14px}
+
+    /* ---- Pillars ---- */
+    section.pillars{background:var(--green-soft);padding:64px 0}
+    .section-head{text-align:center;max-width:36ch;margin:0 auto 44px}
+    .section-head h2{font-size:32px;letter-spacing:-0.01em;margin-bottom:10px}
+    .section-head p{color:var(--muted);font-size:17px}
+    .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px}
+    .card .dot{width:38px;height:38px;border-radius:11px;background:var(--green-soft);
+      display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px}
+    .card h3{font-size:18px;margin-bottom:8px}
+    .card p{font-size:15px;color:var(--muted)}
+
+    /* ---- Screenshot strip ---- */
+    section.shots{padding:72px 0}
+    .shots-row{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:42px}
+    .shot{text-align:center}
+    .shot img{width:100%;max-width:260px;border-radius:26px;border:1px solid var(--line);
+      box-shadow:0 14px 36px rgba(0,0,0,0.07)}
+    .shot p{font-size:15px;color:var(--muted);margin-top:16px;max-width:26ch;margin-left:auto;margin-right:auto}
+
+    /* ---- Counter-position / why ---- */
+    section.why{background:#fafbfa;padding:64px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:760px;margin:38px auto 0}
+    .why-col{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+    .why-col h3{font-size:17px;margin-bottom:16px}
+    .why-col ul{list-style:none}
+    .why-col li{padding:7px 0 7px 26px;position:relative;font-size:15px;color:var(--muted)}
+    .why-col li::before{position:absolute;left:0;top:7px}
+    .why-col.them li::before{content:"–";color:#b0b8b3}
+    .why-col.us li::before{content:"✓";color:var(--green-deep);font-weight:700}
+
+    /* ---- Email capture ---- */
+    section.signup{padding:72px 0;text-align:center}
+    .signup h2{font-size:30px;margin-bottom:12px}
+    .signup p{color:var(--muted);font-size:17px;max-width:40ch;margin:0 auto 26px}
+    form.email{display:flex;gap:10px;max-width:420px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+    form.email input{flex:1;min-width:220px;padding:14px 16px;border:1.5px solid var(--line);
+      border-radius:12px;font-size:16px;font-family:inherit}
+    form.email input:focus{outline:none;border-color:var(--green)}
+
+    /* ---- Footer ---- */
+    footer{padding:40px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+    .foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+    .foot-row a{color:var(--muted);text-decoration:none;margin-left:18px}
+    .foot-row a:hover{color:var(--ink)}
+
+    /* ---- Mobile ---- */
+    @media(max-width:820px){
+      .hero{grid-template-columns:1fr;text-align:center;gap:32px;padding:36px 0}
+      .hero p.sub{margin-left:auto;margin-right:auto}
+      .cta-row{justify-content:center}
+      .grid4{grid-template-columns:1fr 1fr}
+      .shots-row{grid-template-columns:1fr}
+      .why-grid{grid-template-columns:1fr}
+      .hero h1{font-size:36px}
+      .nav-links{display:none}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <nav>
+      <div class="brand"><img src="assets/icon.png" alt="Tend icon" />Tend</div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#why">Why Tend</a>
+        <a href="#get">Get it</a>
+        <a href="support.html">Support</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+      <div>
+        <h1>The ADHD app you'll actually keep using.</h1>
+        <p class="sub">Calm, one-tap routine tracking for adult ADHD brains. No streaks, no shame, no homework.</p>
+        <div class="cta-row">
+          <a class="btn" href="#get">Download on the App Store</a>
+          <a class="btn secondary" href="#features">See how it works</a>
+        </div>
+        <p class="pricing-note">Free to download · Pay once for Plus · No subscription, ever.</p>
+      </div>
+      <div class="hero-phone">
+        <img src="assets/screen-timeline.png" alt="Tend's day timeline showing routines and a 'now' line" />
+      </div>
+    </header>
+  </div>
+
+  <!-- PILLARS -->
+  <section class="pillars" id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Built around how ADHD actually works</h2>
+        <p>Four things every other habit app got wrong.</p>
+      </div>
+      <div class="grid4">
+        <div class="card">
+          <div class="dot">🌱</div>
+          <h3>No shame, ever</h3>
+          <p>No streaks to break, no red marks, no guilt. Missing a day just isn't a big deal.</p>
+        </div>
+        <div class="card">
+          <div class="dot">👆</div>
+          <h3>One tap</h3>
+          <p>The home screen <em>is</em> the check-in. Zero setup — three routines ready the moment you open it.</p>
+        </div>
+        <div class="card">
+          <div class="dot">🕒</div>
+          <h3>See your whole day</h3>
+          <p>A visual timeline with a "now" line, so the day stops feeling shapeless. A calm answer to time-blindness.</p>
+        </div>
+        <div class="card">
+          <div class="dot">🔒</div>
+          <h3>Private by design</h3>
+          <p>No account, no tracking, no server of ours. Your routines live on your device.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section class="shots" id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>A quiet space to keep your day together</h2>
+        <p>Calm, grown-up, and forgiving by design.</p>
+      </div>
+      <div class="shots-row">
+        <div class="shot">
+          <img src="assets/screen-today.png" alt="Today screen with a checked-in routine and a mood strip" />
+          <p>One tap to check in. Then, if you like, tap how it felt.</p>
+        </div>
+        <div class="shot">
+          <img src="assets/screen-timeline.png" alt="Day timeline with a now line" />
+          <p>See your whole day — and where you are in it.</p>
+        </div>
+        <div class="shot">
+          <img src="assets/screen-progress.png" alt="Progress view without streaks" />
+          <p>Progress without streaks or guilt — just how you're really doing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY / COUNTER-POSITION -->
+  <section class="why" id="why">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Most ADHD apps were built to nag you</h2>
+        <p>Tend wasn't. It treats you like an adult who needs a hand — not a child who needs a gold star.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-col them">
+          <h3>Other ADHD apps</h3>
+          <ul>
+            <li>A program with lessons and homework</li>
+            <li>Around $30 every month</li>
+            <li>Account, cloud, community to manage</li>
+            <li>Streaks, points, and guilt when you slip</li>
+          </ul>
+        </div>
+        <div class="why-col us">
+          <h3>Tend</h3>
+          <ul>
+            <li>A tool you open for five seconds</li>
+            <li>Free core, pay once for Plus</li>
+            <li>On-device and private — no account</li>
+            <li>Calm and forgiving, never childish</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL CAPTURE -->
+  <section class="signup" id="get">
+    <div class="wrap">
+      <h2>Be the first to know when Tend launches</h2>
+      <p>One email when it's live on the App Store. No spam, no list-selling — that wouldn't be very Tend.</p>
+      <!--
+        This form posts to a free form service. Replace the action URL with your own:
+        easiest options are Formspree (formspree.io) or Buttondown (buttondown.email).
+        Until you set that up, it just won't submit — swap YOUR_FORM_ID below.
+      -->
+      <form class="email" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="email" name="email" placeholder="you@example.com" required />
+        <button class="btn" type="submit">Notify me</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap foot-row">
+      <div>© 2026 Tend · Made by one person with ADHD.</div>
+      <div>
+        <a href="https://ryansan2001-source.github.io/tend-legal/">Privacy</a>
+        <a href="support.html">Support</a>
+        <a href="https://apps.apple.com/">App Store</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
