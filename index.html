@@ -110,6 +110,15 @@
     .why-col.them li::before{content:"–";color:#b0b8b3}
     .why-col.us li::before{content:"✓";color:var(--green-deep);font-weight:700}
 
+    /* ---- Tend Plus ---- */
+    section.plus{background:var(--green-soft);padding:64px 0}
+    .plus-list{list-style:none;max-width:620px;margin:0 auto 22px}
+    .plus-list li{padding:14px 0 14px 30px;position:relative;font-size:16px;color:var(--ink);
+      border-bottom:1px solid var(--line)}
+    .plus-list li:last-child{border-bottom:none}
+    .plus-list li::before{content:"✓";position:absolute;left:0;top:14px;color:var(--green-deep);font-weight:700}
+    .plus-list strong{color:var(--ink)}
+
     /* ---- Email capture ---- */
     section.signup{padding:72px 0;text-align:center}
     .signup h2{font-size:30px;margin-bottom:12px}
@@ -137,7 +146,9 @@
       .shots-row{grid-template-columns:1fr}
       .why-grid{grid-template-columns:1fr}
       .hero h1{font-size:36px}
-      .nav-links{display:none}
+      /* On phones, hide the in-page jump links but keep Support reachable */
+      .nav-links a[href^="#"]{display:none}
+      .nav-links a{margin-left:0}
     }
   </style>
 </head>
@@ -149,6 +160,7 @@
       <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#why">Why Tend</a>
+        <a href="#plus">Plus</a>
         <a href="#get">Get it</a>
         <a href="support.html">Support</a>
       </div>
@@ -192,7 +204,7 @@
         <div class="card">
           <div class="dot">🕒</div>
           <h3>See your whole day</h3>
-          <p>A visual timeline with a "now" line, so the day stops feeling shapeless. A calm answer to time-blindness.</p>
+          <p>A visual timeline grouped into morning, afternoon, and evening, with a "now" line, so the day stops feeling shapeless. A calm answer to time-blindness.</p>
         </div>
         <div class="card">
           <div class="dot">🔒</div>
@@ -254,6 +266,24 @@
           </ul>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- TEND PLUS -->
+  <section class="plus" id="plus">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Tend Plus, when you want a little more</h2>
+        <p>The core app is free forever. Plus is a one-time unlock, no subscription.</p>
+      </div>
+      <ul class="plus-list">
+        <li><strong>Unlimited routines.</strong> Keep as many as your day needs, not just the free three.</li>
+        <li><strong>Just for today.</strong> Drop in a one-off task for today without building a whole routine.</li>
+        <li><strong>Focus sessions.</strong> A quiet, private space to work alongside, with gentle nudges.</li>
+        <li><strong>Flexible reminders.</strong> Several per routine, on the days and times you choose.</li>
+        <li><strong>Sync across devices.</strong> Your routines back up to your private iCloud and follow you everywhere.</li>
+      </ul>
+      <p class="pricing-note" style="text-align:center">A one-time $9.99 unlock (launch price $6.99). Everything you already use stays free.</p>
     </div>
   </section>
 
